@@ -19,9 +19,10 @@ To use OpenBR24, follow these steps:
 
 ### Live Radar Setup
 
-The GUI listens on UDP port `6678` for datagrams. If your radar sends unicast
-packets, the provided Python script can sniff them from the network interface
-and forward them to this multicast port so the Java GUI receives them.
+The GUI listens on UDP port `6678` for datagrams. It can now decode packets
+directly from this port in real time. If your radar sends the data to a
+different address, you can still use the helper script below to forward the
+packets to port `6678` for the GUI.
 
 Run the helper script with:
 
