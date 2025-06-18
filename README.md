@@ -19,8 +19,6 @@ To use OpenBR24, follow these steps:
 
 ### Live Radar Setup
 
-The GUI now receives UDP datagrams directly from the radar. When you click **Open Live**, the application listens on local port `50102` for packets sent by the radar. Ensure the PC is on the same network segment as the Simrad unit so the packets arrive on that port. No forwarding script is required.
-
 ## Installation
 
 ### Prerequisites
