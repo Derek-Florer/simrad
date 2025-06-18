@@ -19,14 +19,6 @@ To use OpenBR24, follow these steps:
 
 ### Live Radar Setup
 
-To stream packets from a connected Simrad radar to the GUI, run the Node.js forwarder:
-
-```bash
-node scripts/udp_listener.js
-```
-
-This listens on port `50102` for incoming radar data and forwards each datagram to the multicast address `236.6.7.8:6678`. When you click **Open Live** in the GUI, it joins the same multicast group and renders the radar feed in real time.
-
 ## Installation
 
 ### Prerequisites
