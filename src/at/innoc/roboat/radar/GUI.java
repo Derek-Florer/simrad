@@ -27,6 +27,7 @@ import java.net.UnknownHostException;
 
 import at.innoc.roboat.radar.control.LiveControl;
 import at.innoc.roboat.radar.control.ZoomLevel;
+import at.innoc.roboat.radar.RadarUdpSource;
 import javax.swing.JScrollPane;
 import javax.swing.BorderFactory;
 import java.awt.SystemColor;
@@ -270,8 +271,8 @@ public class GUI extends JFrame implements RadarRendererListener {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
 					try {				
 						//control.Power(true);
-						radarsource=new RadarLiveSource(control);
-						radarrenderer=new RadarRenderer(radarsource, radarlistener);
+                                               radarsource=new RadarUdpSource(control);
+                                               radarrenderer=new RadarRenderer(radarsource, radarlistener);
 					} catch (UnknownHostException e1) {
 						e1.printStackTrace();
 					} catch (IOException e1) {
