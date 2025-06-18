@@ -14,7 +14,12 @@ To use OpenBR24, follow these steps:
 1. Connect to boat's network
 2. Start the GUI class or run the .jar file provided.
 2. Choose to open a live radar ("Open Live") device or a recording ("Open File"). Recordings are read from PCAP-files. You can create your own recordings using tools like Wireshark or tcpdump.
+
 3. If you open a live device, turn it on using the "Power On" button. You can then select the range of the radar from the listbox. In playback mode, the range is defined by the recorded data.
+
+### Live Radar Setup
+
+The GUI now receives UDP datagrams directly from the radar. When you click **Open Live**, the application listens on local port `50102` for packets sent by the radar. Ensure the PC is on the same network segment as the Simrad unit so the packets arrive on that port. No forwarding script is required.
 
 ## Installation
 
