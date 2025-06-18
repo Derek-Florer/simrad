@@ -19,15 +19,17 @@ To use OpenBR24, follow these steps:
 
 ### Live Radar Setup
 
-The GUI listens on UDP port `50102` for datagrams coming directly from the radar.
-Ensure your computer is on the same network segment so the packets reach that
-port. If you need to confirm that data is arriving, use the helper script:
+The GUI listens on UDP port `6678` for datagrams. If your radar sends unicast
+packets, the provided Python script can sniff them from the network interface
+and forward them to this multicast port so the Java GUI receives them.
+
+Run the helper script with:
 
 ```bash
 python scripts/udp_sniffer.py
 ```
 
-It prints each received packet along with the source address and size.
+The script will display each captured packet and forward it to the GUI.
 
 ## Installation
 
