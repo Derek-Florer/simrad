@@ -1,13 +1,18 @@
 const dgram = require('dgram');
 const fs = require('fs');
 
-const LISTEN_PORT = 50102; // Port to receive on
+
+const LISTEN_PORT = 6678; // Port to receive radar packets on this PC
+const SRC_PORT = 38071; // Source port used when forwarding
+const SRC_ADDR = '169.254.74.24'; // Source IP used when forwarding
 const FORWARD_PORT = 6678; // Port the GUI listens on
 const FORWARD_ADDR = '236.6.7.8'; // Multicast group for GUI
 const DEBUG = true; // Toggle CSV logging
 
 const listenSocket = dgram.createSocket('udp4');
 const forwardSocket = dgram.createSocket('udp4');
+// Bind the forward socket so outgoing packets use the desired source IP/port
+forwardSocket.bind(SRC_PORT, SRC_ADDR);
 
 // Setup CSV logging if DEBUG is enabled
 let csvStream = null;
@@ -40,4 +45,5 @@ listenSocket.on('message', (msg, rinfo) => {
   });
 });
 
+listenSocket.bind(LISTEN_PORT);
 listenSocket.bind(LISTEN_PORT);
