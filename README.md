@@ -19,6 +19,16 @@ To use OpenBR24, follow these steps:
 
 ### Live Radar Setup
 
+The GUI listens on UDP port `50102` for datagrams coming directly from the radar.
+Ensure your computer is on the same network segment so the packets reach that
+port. If you need to confirm that data is arriving, use the helper script:
+
+```bash
+python scripts/udp_sniffer.py
+```
+
+It prints each received packet along with the source address and size.
+
 ## Installation
 
 ### Prerequisites
