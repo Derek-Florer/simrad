@@ -28,3 +28,7 @@ bin/org/jnetpcap/app/IpReassemblyExample.class
 bin/org/jnetpcap/app/IpReassemblyExample$1.class
 bin/org/jnetpcap/app/IpReassemblyExample$IpReassemblyBuffer.class
 bin/org/jnetpcap/app/IpReassemblyExample$IpReassemblyBufferHandler.class
+
+# Node.js artifacts
+node_modules/
+simrad_packets_*.csv

@@ -8,7 +8,7 @@
             "mainClass": "at.innoc.roboat.radar.GUI",
             "projectName": "INNOC_Radar",
             // Use absolute path for java.library.path
-            "vmArgs": "-Djava.library.path=${workspaceFolder}/lib/jnetpcap64",
+            "vmArgs": "--enable-native-access=ALL-UNNAMED -Djava.library.path=${workspaceFolder}/lib/jnetpcap64",
             "classPaths": [
                 "bin",
                 "lib/jnetpcap64/jnetpcap.jar"
