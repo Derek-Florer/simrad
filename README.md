@@ -19,7 +19,7 @@ To use OpenBR24, follow these steps:
 
 ### Live Radar Setup
 
-## Installation
+The radar streams data from `169.254.74.24:38071` to the multicast address `236.6.7.8:6678`. When you choose **Open Live**, the application joins this multicast group on port `6678` to display the incoming radar picture. Ensure your PC is on the same network segment so it can receive the multicast packets.
 
 ### Prerequisites
 

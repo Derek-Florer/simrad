@@ -4,7 +4,8 @@ import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.InetAddress;
 import java.net.InetSocketAddress;
-import java.net.DatagramSocket;
+import java.net.MulticastSocket;
+import java.net.NetworkInterface;
 import java.net.SocketException;
 import java.net.UnknownHostException;
 
@@ -13,7 +14,7 @@ import at.innoc.roboat.radar.helpers.IpHelper;
 
 public class RadarLiveSource implements RadarSource, Runnable {
 
-        private DatagramSocket socket;
+        private MulticastSocket socket;
 	private DatagramPacket datagram;
 	private static Thread keepAliveThread = null;
 	private static boolean keepAliveStop;
@@ -28,7 +29,10 @@ public class RadarLiveSource implements RadarSource, Runnable {
 				throw new UnknownHostException((String) result[1]);
 			} 
                         InetAddress interfaceAddress = InetAddress.getByName((String) result[0]);
-                        socket = new DatagramSocket(new InetSocketAddress(interfaceAddress, 50102));
+                        NetworkInterface netfInf = NetworkInterface.getByInetAddress(interfaceAddress);
+                        socket = new MulticastSocket(6678);
+                        InetAddress group = InetAddress.getByName("236.6.7.8");
+                        socket.joinGroup(new InetSocketAddress(group, 6678), netfInf);
                 } catch (UnknownHostException e) {
                         e.printStackTrace();
                 } catch (IOException e) {
@@ -64,12 +68,26 @@ public class RadarLiveSource implements RadarSource, Runnable {
 		}
 	}
 
-	@Override
-	public void close() {
-		keepAliveStop = true;
+        @Override
+        public void close() {
+                keepAliveStop = true;
+                try {
+                        Object[] result = IpHelper.getMachineIp();
+                        if (result[0] == null) {
+                                throw new UnknownHostException((String) result[1]);
+                        }
+                        InetAddress interfaceAddress = InetAddress.getByName((String) result[0]);
+                        NetworkInterface netfInf = NetworkInterface.getByInetAddress(interfaceAddress);
+                        InetAddress group = InetAddress.getByName("236.6.7.8");
+                        socket.leaveGroup(new InetSocketAddress(group, 6678), netfInf);
+                } catch (UnknownHostException e) {
+                        e.printStackTrace();
+                } catch (IOException e) {
+                        e.printStackTrace();
+                }
                 socket.close();
 
-	}
+        }
 
 	/**
 	 * Sends keep alive packages
